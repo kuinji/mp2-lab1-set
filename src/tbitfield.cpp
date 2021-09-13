@@ -11,43 +11,74 @@
 
 TBitField::TBitField(size_t len)
 {
-   
+    typeSize = sizeof(uint);
+    if (len % typeSize)
+    {
+        memLen = len / typeSize + 1;
+        bitLen = memLen * typeSize * 8;
+        pMem = new uint[memLen];
+    }
+    else
+    {
+        memLen = len / typeSize;
+        bitLen = memLen * typeSize * 8;
+        pMem = new uint[memLen];
+    }
+
+    for (int i = 0; i < memLen; i++)
+        pMem[i] = 0;
 }
 
 TBitField::TBitField(const TBitField &bf) // конструктор копирования
 {
-
+    for (int i = 0; i < bf.bitLen; i++)
+    {
+        if (bf.getBit(i))
+            this->setBit(i);
+    }
+     
 }
 
 size_t TBitField::getIndex(const size_t n) const  // индекс в pМем для бита n
 {
-    return 0;
+    return (n / (sizeof(uint) * 8));
 }
 
 uint TBitField::getMask(const size_t n) const // битовая маска для бита n
 {
-    return 0;
+    uint mask = 1;
+    for (int i = 0; i < n; i++)
+    {
+        mask *= 2;
+    }
+    return mask;
 }
 
 // доступ к битам битового поля
 uint TBitField::getLength() const // получить длину (к-во битов)
 {
-    return 0;
+    int i = bitLen - 1;
+    std::cout << *pMem;
+    while (!this->getBit(i) && i > 0) { i--; }
+    return i;
 }
 
 void TBitField::setBit(const size_t n) // установить бит
 {
-
+    pMem[getIndex(n)] |= getMask(n);
 }
 
 void TBitField::clrBit(const size_t n) // очистить бит
 {
-
+    pMem[getIndex(n)] &= (~getMask(n));
 }
 
 bool TBitField::getBit(const size_t n) const // получить значение бита
 {
-    return false;
+    uint mask = getMask(n);
+    if (this->pMem[getIndex(n)] & mask)
+        return true;
+    else return false;
 }
 
 // битовые операции
@@ -94,5 +125,9 @@ std::istream &operator>>(std::istream &istr, TBitField &bf) // ввод
 
 std::ostream &operator<<(std::ostream &ostr, const TBitField &bf) // вывод
 {
+    for (int i = bf.memLen * bf.typeSize * 8; i >= 0; i--)
+    {
+        ostr << bf.getBit(i);
+    }
     return ostr;
 }
