@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <iostream>
 
-//#define USE_SET // Использовать класс TSet,
+#define USE_SET // Использовать класс TSet,
                 // закоментировать, чтобы использовать битовое поле
 
 #ifndef USE_SET // Использовать класс TBitField
@@ -17,7 +17,7 @@
 
 int main()
 {
-   /* int n, m, k, count;
+   int n, m, k, count;
     setlocale(LC_ALL, "Russian");
     std::cout << "Тестирование программ поддержки битового поля" << std::endl;
     std::cout << "             Решето Эратосфена" << std::endl;
@@ -49,13 +49,6 @@ int main()
          }
     std::cout << std::endl;
     std::cout << "В первых " << n << " числах " << count << " простых" << std::endl; */
-
-    TBitField a(3);
-    std::cin >> a;
-    std::cout << std::endl << a;
-
-    
-    
 
 }
 #else
@@ -96,5 +89,6 @@ int main()
         }
     std::cout << std::endl;
     std::cout << "В первых " << n << " числах " << count << " простых" << std::endl;
+
 }
 #endif

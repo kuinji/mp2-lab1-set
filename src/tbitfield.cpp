@@ -119,10 +119,9 @@ bool TBitField::isGreater(int x, int y)
 {
     bool greater;
     if (x >= y)
-        greater = 0;
+        return 0;
     else
-        greater = 1;
-    return greater;
+        return 1;
 }
 
 TBitField TBitField::bitOperator(const TBitField& bf, bool (TBitField::*someOperation)(bool , bool))
@@ -156,6 +155,7 @@ TBitField TBitField::bitOperator(const TBitField& bf, bool (TBitField::*someOper
         if ((this->*someOperation)(0, greaterBf->getBit(i)))
             result.setBit(i);
     }
+
     return result;
 }
 
@@ -201,14 +201,6 @@ TBitField::~TBitField()
 // ввод/вывод
 std::istream &operator>>(std::istream &istr, TBitField &bf) // ввод
 {
-    /*for (int i = 0; i < bf.bitLen; i++)
-    {
-        bool inputBit;
-        istr >> inputBit;
-        if (inputBit) bf.setBit(i);
-        else bf.clrBit(i);
-    }*/
-
     size_t maxInputLen = bf.bitLen;
     char* symbols = new char[bf.bitLen];
     char currentSymb;

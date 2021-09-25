@@ -335,7 +335,8 @@ TEST(TSet, can_combine_different_size_set)
     expSet.insElem(5);
     expSet.insElem(8);
 
-    EXPECT_EQ(expSet, set1 + set2);
+    TSet setResult(set1 + set2);
+    EXPECT_EQ(expSet, setResult);
 }
 
 TEST(TSet, can_invert_and_combine_different_size_set)
@@ -355,7 +356,8 @@ TEST(TSet, can_invert_and_combine_different_size_set)
     testSet.insElem(3);
     testSet.insElem(4);
 
-    EXPECT_EQ(secondSet + negFirstSet, testSet);
+    TSet setResult(secondSet + negFirstSet);
+    EXPECT_EQ(setResult, testSet);
 }
 
 TEST(TSet, can_invert_large_set)

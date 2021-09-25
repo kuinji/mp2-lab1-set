@@ -82,7 +82,8 @@ bool TSet::operator!=(const TSet &s) const // сравнение
 
 TSet TSet::operator+(const TSet &s) // объединение
 {
-    return TSet(TBitField(this->bitField | s.bitField));
+    TSet result(TBitField(this->bitField | s.bitField));
+    return result;
 }
 
 TSet TSet::operator+(const uint elem) // объединение с элементом
@@ -101,7 +102,8 @@ TSet TSet::operator-(const uint elem) // разность с элементом
 
 TSet TSet::operator*(const TSet &s) // пересечение
 {
-    return TSet(TBitField(this->bitField & s.bitField));
+    TSet result(TBitField(this->bitField & s.bitField));
+    return result;
 }
 
 TSet TSet::operator~() // дополнение
