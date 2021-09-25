@@ -56,6 +56,7 @@
 #include <limits>
 #include <ostream>
 #include <vector>
+#include <streambuf>
 
 // Copyright 2005, Google Inc.
 // All rights reserved.

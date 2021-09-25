@@ -1,4 +1,5 @@
 #include <gtest.h>
+
 #include "tbitfield.h"
 TEST(TBitField, can_create_bitfield_with_positive_length)
 {
@@ -140,7 +141,7 @@ TEST(TBitField, or_operator_applied_to_bitfields_of_non_equal_size)
     // bf1 = 0011
     bf1.setBit(2);
     bf1.setBit(3);
-    // bf2 = 01010
+    // bf2 = 01010 
     bf2.setBit(1);
     bf2.setBit(3);
 
@@ -222,11 +223,9 @@ TEST(TBitField, invert_plus_and_operator_on_different_size_bitfield)
     firstBf.setBit(0);
     negFirstBf = ~firstBf;
     // negFirstBf = 1110
-
     // secondBf = 00011000
     secondBf.setBit(3);
     secondBf.setBit(4);
-
     // testBf = 00001000
     testBf.setBit(3);
 
@@ -259,7 +258,7 @@ TEST(TBitField, can_invert_many_random_bits_bitfield)
     EXPECT_EQ(expNegBf, negBf);
 }
 
-TEST(TBitField, bitfields_with_different_bits_are_not_equal)
+TEST(TBitField, check_negation_operator)
 {
     const size_t size = 4;
     TBitField bf1(size), bf2(size);
@@ -272,3 +271,27 @@ TEST(TBitField, bitfields_with_different_bits_are_not_equal)
 
     EXPECT_NE(bf1, bf2);
 }
+
+TEST(TBitField, throws_when_input_invalid_characters)
+{
+    const size_t size = 1;
+    TBitField bf(size);
+
+    std::cin.putback('\n');
+    std::cin.putback('A');
+
+    ASSERT_ANY_THROW(std::cin >> bf);
+}
+
+TEST(TBitField, throws_when_input_overflow)
+{
+    const size_t size = 0;
+    TBitField bf(size);
+
+    std::cin.putback('0');
+
+    ASSERT_ANY_THROW(std::cin >> bf);
+    std::cin.sync();
+}
+
+

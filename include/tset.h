@@ -12,6 +12,11 @@ class TSet
 private:
   size_t maxPower;    // максимальная мощность множества
   TBitField bitField; // битовое поле для хранения характеристического вектора
+
+  TSet setOperation(const TSet& s, bool (TSet::* someOperator)(bool, bool));
+  bool operatorAnd(bool bit, bool otherBit);
+  bool operatorOr(bool bit, bool otherBit);
+
 public:
   TSet(size_t mp);
   TSet(const TSet &s);       // конструктор копирования
@@ -36,6 +41,7 @@ public:
   TSet operator*(const TSet &s);   // пересечение
   TSet operator~();                // дополнение
 
+  bool toBool(char symb);
   friend std::istream &operator>>(std::istream &istr, TSet &bf);
   friend std::ostream &operator<<(std::ostream &ostr, const TSet &bf);
 };

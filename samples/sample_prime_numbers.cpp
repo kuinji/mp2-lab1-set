@@ -17,9 +17,9 @@
 
 int main()
 {
-    int n, m, k, count;
+   /* int n, m, k, count;
     setlocale(LC_ALL, "Russian");
-    /*std::cout << "Тестирование программ поддержки битового поля" << std::endl;
+    std::cout << "Тестирование программ поддержки битового поля" << std::endl;
     std::cout << "             Решето Эратосфена" << std::endl;
     std::cout << "Введите верхнюю границу целых значений - ";
     std::cin  >> n;
@@ -50,6 +50,12 @@ int main()
     std::cout << std::endl;
     std::cout << "В первых " << n << " числах " << count << " простых" << std::endl; */
 
+    TBitField a(3);
+    std::cin >> a;
+    std::cout << std::endl << a;
+
+    
+    
 
 }
 #else

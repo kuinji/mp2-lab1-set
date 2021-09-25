@@ -22,7 +22,12 @@ private:
     // методы реализации
     size_t getIndex(const size_t n) const; // индекс в pМем для бита n
     uint getMask(const size_t n) const;    // битовая маска для бита n
-                                 
+
+    bool isGreater(int x, int y);
+    TBitField bitOperator(const TBitField& bf, bool (TBitField::*someOperation)(bool, bool));
+    bool operatorOr(bool another, bool anotherOne);
+    bool operatorAnd(bool another, bool anotherOne);
+    
 public:
      TBitField(size_t len);
      TBitField(const TBitField &bf);
@@ -38,7 +43,7 @@ public:
     bool operator==(const TBitField &bf) const; // сравнение
     bool operator!=(const TBitField &bf) const; // сравнение
     TBitField& operator=(const TBitField &bf);  // присваивание
-    TBitField  operator|(const TBitField &bf);  // операция "или"
+    TBitField  operator|(const TBitField  &bf);  // операция "или"
     TBitField  operator&(const TBitField &bf);  // операция "и"
     TBitField  operator~();                 // отрицание
 
@@ -49,3 +54,4 @@ public:
 //   бит.поле - набор битов с номерами от 0 до bitLen
 //   массив pМем рассматривается как последовательность uint элементов
 //   биты в эл-тах pМем нумеруются справа налево (от младших к старшим)
+

@@ -313,3 +313,75 @@ TEST(TSet, testCoutInsClearPlusMinus)
     set1 = set1 - 1;
     EXPECT_EQ(expSet, set1 + set + set1);
 }
+
+TEST(TSet, can_combine_different_size_set)
+{
+    const size_t size1 = 4;
+    const size_t size2 = 6;
+    TSet set1(size1), set2(size2), expSet(size2);
+    // set1 = {1, 3}
+    set1.insElem(1);
+    set1.insElem(3);
+    
+    // set2 = {2, 5}
+    set2.insElem(2);
+    set2.insElem(5);
+
+    expSet.insElem(1);
+    expSet.insElem(3);
+    expSet.insElem(2);
+    expSet.insElem(5);
+
+    EXPECT_EQ(expSet, set1 + set2);
+}
+
+TEST(TSet, can_invert_and_combine_different_size_set)
+{
+    const uint firstSize = 4, secondSize = 8;
+    TSet firstSet(firstSize), negFirstSet(firstSize), secondSet(secondSize), testSet(secondSize);
+    // firstSet = {0}
+    firstSet.insElem(0);
+    negFirstSet = ~firstSet;
+    // negFirstSet = {1, 2, 3}
+    // secondSet = {3, 4}
+    secondSet.insElem(3);
+    secondSet.insElem(4);
+    // testSet = {1, 2, 3, 4}
+    testSet.insElem(1);
+    testSet.insElem(2);
+    testSet.insElem(3);
+    testSet.insElem(4);
+
+    EXPECT_EQ(secondSet + negFirstSet, testSet);
+}
+
+TEST(TSet, can_invert_large_set)
+{
+    const size_t size = 50;
+    TSet set(size), negSet(size), expNegSet(size);
+    set.insElem(30);
+    negSet = ~set;
+
+    for (size_t i = 0; i < size; i++)
+        expNegSet.insElem(i);
+    expNegSet.delElem(30);
+
+    EXPECT_EQ(expNegSet, negSet);
+}
+
+TEST(TSet, can_cast_to_bitfield)
+{
+    const size_t size = 5;
+    TSet set(size);
+    //set = {0, 3}
+    set.insElem(0);
+    set.insElem(3);
+    TBitField expBf(size);
+    //expBf = 01001
+    expBf.setBit(0);
+    expBf.setBit(3);
+
+    TBitField bfCast = (TBitField)set;
+
+    EXPECT_EQ(expBf, bfCast);
+}
