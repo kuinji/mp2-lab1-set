@@ -41,7 +41,6 @@ public:
   TSet operator*(const TSet &s);   // пересечение
   TSet operator~();                // дополнение
 
-  bool toBool(char symb);
   friend std::istream &operator>>(std::istream &istr, TSet &bf);
   friend std::ostream &operator<<(std::ostream &ostr, const TSet &bf);
 };

@@ -23,9 +23,10 @@ TBitField::TBitField(size_t len) : bitLen(len)
     }
 }
 
-TBitField::TBitField(const TBitField &bf) // конструктор копирования
+TBitField::TBitField(const TBitField &bf) : TBitField(bf.bitLen) // конструктор копирования
 {
-    *this = bf;
+    for (int i = 0; i < memLen; ++i)
+        pMem[i] = bf.pMem[i];
 }
 
 size_t TBitField::getIndex(const size_t n) const  // индекс в pМем для бита n
