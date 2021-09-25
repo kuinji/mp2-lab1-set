@@ -23,7 +23,6 @@ private:
     size_t getIndex(const size_t n) const; // индекс в pМем для бита n
     uint getMask(const size_t n) const;    // битовая маска для бита n
 
-    bool isGreater(int x, int y);
     TBitField bitOperator(const TBitField& bf, bool (TBitField::*someOperation)(bool, bool));
     bool operatorOr(bool another, bool anotherOne);
     bool operatorAnd(bool another, bool anotherOne);

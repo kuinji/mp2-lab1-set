@@ -116,23 +116,12 @@ bool TBitField::operator!=(const TBitField& bf) const // сравнение
     return !(*this == bf);
 }
 
-bool TBitField::isGreater(int x, int y)
-{
-    bool greater;
-    if (x >= y)
-        return 0;
-    else
-        return 1;
-}
-
 TBitField TBitField::bitOperator(const TBitField& bf, bool (TBitField::*someOperation)(bool , bool))
 {
-    bool greater = isGreater(bitLen, bf.bitLen);
-
     const TBitField* greaterBf;
     const TBitField* smallerBf;
 
-    if (greater == 0)
+    if (bitLen >= bf.bitLen)
     {
         greaterBf = this;
         smallerBf = &bf;

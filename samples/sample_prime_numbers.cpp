@@ -57,7 +57,7 @@ int main()
 
 int main()
 {
-    /*
+    
     int n, m, k, count;
     setlocale(LC_ALL, "Russian");
     std::cout << "Тестирование программ поддержки множества" << std::endl;
@@ -89,14 +89,7 @@ int main()
                 std::cout << std::endl;
         }
     std::cout << std::endl;
-    std::cout << "В первых " << n << " числах " << count << " простых" << std::endl;*/
+    std::cout << "В первых " << n << " числах " << count << " простых" << std::endl;
 
-    const size_t size = 13;
-    TSet set(size), set1(size), expSet(size);
-    set1 = set1 + 1 + 3 + 5 + 12;
-    set1 = set1 - 1 - 3 - 5 - 12;
-    set1 = set1 - 1;
-    TSet res(set1 + set + set1);
-    std::cout << res;
 }
 #endif
