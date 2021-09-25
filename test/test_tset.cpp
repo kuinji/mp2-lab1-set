@@ -316,21 +316,24 @@ TEST(TSet, testCoutInsClearPlusMinus)
 
 TEST(TSet, can_combine_different_size_set)
 {
-    const size_t size1 = 4;
-    const size_t size2 = 6;
+    const size_t size1 = 5;
+    const size_t size2 = 10;
     TSet set1(size1), set2(size2), expSet(size2);
     // set1 = {1, 3}
     set1.insElem(1);
     set1.insElem(3);
     
-    // set2 = {2, 5}
+    // set2 = {2, 5, 8}
     set2.insElem(2);
     set2.insElem(5);
+    set2.insElem(8);
+
 
     expSet.insElem(1);
     expSet.insElem(3);
     expSet.insElem(2);
     expSet.insElem(5);
+    expSet.insElem(8);
 
     EXPECT_EQ(expSet, set1 + set2);
 }
