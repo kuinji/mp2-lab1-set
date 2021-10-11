@@ -57,7 +57,7 @@ size_t TBitField::getNumBytes() const // получить количество �
 
 void TBitField::setBit(const size_t n) // установить бит
 {
-    if (n > bitLen)
+    if (n > bitLen - 1)
         throw - 1;
 
     pMem[getIndex(n)] |= getMask(n);
